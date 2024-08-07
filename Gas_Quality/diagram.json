@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "author": "Onwara PIMSIRIPAT",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-breadboard-half", "id": "bb1", "top": -166.2, "left": -6.8, "attrs": {} },
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 36.74,
+      "left": -5.9,
+      "rotate": 90,
+      "attrs": {}
+    },
+    { "type": "chip-mq2", "id": "chip1", "top": 202.62, "left": 196.8, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -114.9,
+      "left": -226.2,
+      "attrs": { "temperature": "66.3", "humidity": "55" }
+    },
+    {
+      "type": "wokwi-stepper-motor",
+      "id": "stepper1",
+      "top": 138.01,
+      "left": -277.97,
+      "attrs": { "size": "17", "arrow": "purple", "display": "none" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -253.2,
+      "left": 483.8,
+      "attrs": { "color": "red" }
+    },
+    { "type": "wokwi-led", "id": "led3", "top": -90, "left": 493.4, "attrs": { "color": "blue" } }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:2", "chip1:DO", "gold", [ "v0" ] ],
+    [ "esp:GND.2", "bb1:bn.25", "black", [ "v0", "h182.4" ] ],
+    [ "esp:5V", "bb1:bp.1", "red", [ "v0" ] ],
+    [ "chip1:VCC", "bb1:bp.15", "red", [ "h0" ] ],
+    [ "chip1:GND", "bb1:bn.16", "black", [ "h0" ] ],
+    [ "stepper1:A-", "esp:16", "green", [ "v28.8", "h220.8" ] ],
+    [ "stepper1:A+", "esp:17", "green", [ "v28.8", "h240" ] ],
+    [ "stepper1:B+", "esp:18", "green", [ "v28.8", "h240" ] ],
+    [ "stepper1:B-", "esp:19", "green", [ "v28.8", "h249.59" ] ],
+    [ "dht1:VCC", "bb1:bp.3", "red", [ "v0" ] ],
+    [ "dht1:GND", "bb1:bn.2", "black", [ "v0" ] ],
+    [ "esp:13", "dht1:SDA", "magenta", [ "v0" ] ],
+    [ "esp:32", "led1:A", "red", [ "v-19.05", "h172.8", "v0", "h316.8", "v-288", "h-9.6" ] ],
+    [ "led3:C", "bb1:bn.24", "black", [ "v57.6", "h-220.4" ] ],
+    [ "led1:C", "bb1:bn.22", "black", [ "v19.2", "h-18.8", "v182.4", "h-153.6" ] ],
+    [ "led3:A", "esp:25", "blue", [ "v105.6", "h-470.4" ] ],
+    [ "chip1:AO", "esp:4", "green", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}
